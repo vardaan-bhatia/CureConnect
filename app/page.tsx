@@ -13,15 +13,16 @@ export default function Home() {
             height={200}
             width={200}
             alt="Icon"
-            className="mb-12 h-10 w-fit"
+            className="mb-8 h-8 w-fit"
           />
           <PatientForm />
-          <div className="text-14-regular mt-20 flex justify-between">
+          <div className="text-14-regular mt-10 flex justify-between">
             <p className="text-dark-600 xl:text-left">
               © 2024 CureLinker by{" "}
               <Link
                 href="https://www.linkedin.com/in/vardaan-bhatia-028446203/"
                 className="text-cyan-400"
+                target="_blank"
               >
                 Vardaan Bhatia
               </Link>
