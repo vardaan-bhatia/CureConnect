@@ -11,7 +11,7 @@ const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
-  title: "CureLinker",
+  title: "CureConnect",
   description: "Connecting Patients, Streamlining Care",
 };
 

@@ -9,7 +9,7 @@ export default function Home() {
       <section className="remove-scrollbar container my-auto">
         <div className="sub-container max-w-[496px]">
           <Image
-            src="/assets/images/svgviewer-output (4).png"
+            src="/assets/icons/svgviewer-output (5).png"
             height={200}
             width={200}
             alt="Icon"
@@ -18,7 +18,7 @@ export default function Home() {
           <PatientForm />
           <div className="text-14-regular mt-10 flex justify-between">
             <p className="text-dark-600 xl:text-left">
-              © 2024 CureLinker by{" "}
+              © 2024 CureConnect by{" "}
               <Link
                 href="https://www.linkedin.com/in/vardaan-bhatia-028446203/"
                 className="text-cyan-400"
