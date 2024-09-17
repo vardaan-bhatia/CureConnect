@@ -59,7 +59,7 @@ const PatientForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
         <section className="space-y-4">
           <p className="text-24-bold md:text-24-bold">
             Hi 👋, Let's make your health journey smoother!
