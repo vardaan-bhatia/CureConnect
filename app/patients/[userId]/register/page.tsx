@@ -1,21 +1,20 @@
+import RegisterForm from "@/components/Forms/RegisterForm";
 import Image from "next/image";
-import PatientForm from "@/components/Forms/PatientForm";
 import Link from "next/link";
 
-export default function Home() {
+const Register = async ({ params: { userId } }: SearchParamProps) => {
   return (
     <div className="flex h-screen max-h-screen">
-      {/* otp verification */}
-      <section className="remove-scrollbar container my-auto">
-        <div className="sub-container max-w-[496px]">
+      <section className="remove-scrollbar container">
+        <div className="sub-container max-w-[496px] flex-1 flex-col py-10">
           <Image
             src="/assets/icons/svgviewer-output (5).png"
             height={1000}
             width={1000}
-            alt="Icon"
-            className="mb-8 h-8 w-fit"
+            alt="patient"
+            className="mb-12 h-10 w-fit"
           />
-          <PatientForm />
+          <RegisterForm />
           <div className="text-14-regular mt-10 flex justify-between">
             <p className="text-dark-600 xl:text-left">
               © 2024 CureConnect by{" "}
@@ -33,13 +32,16 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       <Image
-        src="/assets/images/doctorhero.png"
-        alt="heroimg-doctor"
-        className="side-img max-w-[50%]"
+        src="/assets/images/Gemini_Generated_Image_qniqfkqniqfkqniq.jpeg"
         height={1000}
         width={1000}
+        alt="patient"
+        className="side-img max-w-[50%]"
       />
     </div>
   );
-}
+};
+
+export default Register;
