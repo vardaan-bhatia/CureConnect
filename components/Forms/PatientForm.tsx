@@ -4,22 +4,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Form } from "@/components/ui/form";
-import CustomFormField from "../CustomFormField";
+import CustomFormField, { formfieldtype } from "../CustomFormField";
 import SubmitButton from "../SubmitButton";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { UserFormValidation } from "@/lib/FormValidation";
 import { createUser } from "@/lib/actions/patient.actions";
-
-export enum formfieldtype {
-  INPUT = "input",
-  TEXTAREA = "textarea",
-  PHONE_INPUT = "phoneInput",
-  CHECKBOX = "checkbox",
-  DATE_PICKER = "datePicker",
-  SELECT = "select",
-  SKELETON = "skeleton",
-}
 
 const PatientForm = () => {
   const router = useRouter();
@@ -85,7 +75,7 @@ const PatientForm = () => {
           label="Email"
           iconSrc="/assets/icons/email.svg"
           iconAlt="email"
-          placeholder="vardaanbhatia55@gmail.com"
+          placeholder="xyz@gmail.com"
         />
         <CustomFormField
           fieldType={formfieldtype.PHONE_INPUT}
