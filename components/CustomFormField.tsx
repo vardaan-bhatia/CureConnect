@@ -18,6 +18,8 @@ import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 
 import { Select, SelectContent, SelectTrigger, SelectValue } from "./ui/select";
+import { Textarea } from "./ui/textarea";
+import { Checkbox } from "./ui/checkbox";
 
 export enum formfieldtype {
   INPUT = "input",
@@ -131,16 +133,32 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
     case formfieldtype.TEXTAREA:
       return (
         <FormControl>
-          <textarea
+          <Textarea
             placeholder={props.placeholder}
             {...field}
-            className="shad-textArea"
+            className="shad-textArea resize-none"
             disabled={props.disabled}
           />
         </FormControl>
       );
     case formfieldtype.SKELETON:
       return props.renderSkeleton ? props.renderSkeleton(field) : null;
+    case formfieldtype.CHECKBOX:
+      return (
+        <FormControl>
+          <div className="flex items-center gap-4">
+            <Checkbox
+              id={props.name}
+              checked={field.value}
+              onCheckedChange={field.onChange}
+              className=" bg-blue-500"
+            />
+            <label htmlFor={props.name} className="checkbox-label">
+              {props.label}
+            </label>
+          </div>
+        </FormControl>
+      );
     default:
       return null;
   }

@@ -12,7 +12,7 @@ import { UserFormValidation } from "@/lib/FormValidation";
 import { createUser } from "@/lib/actions/patient.actions";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { GenderOptions } from "../../constants/index";
-import { Doctors } from "../../constants/index";
+import { Doctors, IdentificationTypes } from "../../constants/index";
 import Image from "next/image";
 import { SelectItem } from "../ui/select";
 
@@ -179,7 +179,11 @@ const RegisterForm = () => {
         >
           {/* Map Doctors array to render options */}
           {Doctors.map((doctor) => (
-            <SelectItem key={doctor.name} value={doctor.name}>
+            <SelectItem
+              key={doctor.name}
+              value={doctor.name}
+              className="cursor-pointer hover:bg-dark-300 "
+            >
               <div className="flex items-center">
                 <Image
                   src={doctor.image}
@@ -215,18 +219,88 @@ const RegisterForm = () => {
           <CustomFormField
             fieldType={formfieldtype.TEXTAREA}
             control={form.control}
-            name="contact-name"
-            label="Emergency contact name"
-            placeholder="Guardian's name"
+            name="allergies"
+            label="Allergies(if any)"
+            placeholder="ex: Shellfish, Dust, Polle"
           />
           <CustomFormField
-            fieldType={formfieldtype.INPUT}
+            fieldType={formfieldtype.TEXTAREA}
             control={form.control}
-            name="contact-name"
-            label="Emergency contact name"
-            placeholder="Guardian's name"
+            name="currenty-medications"
+            label="Medications Currently Taken"
+            placeholder="ex: Paracetamol 500mg, Lisinopril 10mg"
           />
         </div>
+        <div className="flex flex-col gap-6 xl:flex-row">
+          {" "}
+          <CustomFormField
+            fieldType={formfieldtype.TEXTAREA}
+            control={form.control}
+            name="health-history"
+            label="Family Health History"
+            placeholder="ex: Father had hypertension"
+          />{" "}
+          <CustomFormField
+            fieldType={formfieldtype.TEXTAREA}
+            control={form.control}
+            name="contact-name"
+            label="Previous Medical Conditions"
+            placeholder="Diabetes diagnosed at age 30"
+          />
+        </div>
+        <section className="space-y-8">
+          <div className="mb-9 space-y-1">
+            <h2 className="sub-header">Identification and verification</h2>
+          </div>
+        </section>
+        <CustomFormField
+          fieldType={formfieldtype.SELECT}
+          control={form.control}
+          name="identification"
+          label="Identification type"
+          placeholder="Select your ID type"
+        >
+          {/* Map IdentificationTypes array to render options */}
+          {IdentificationTypes.map((id) => (
+            <SelectItem
+              key={id}
+              value={id}
+              className="cursor-pointer hover:bg-dark-300 "
+            >
+              {id}
+            </SelectItem>
+          ))}
+        </CustomFormField>{" "}
+        <CustomFormField
+          fieldType={formfieldtype.INPUT}
+          control={form.control}
+          name="id-number"
+          label="Identification number"
+          placeholder="ex-1345 2345 4234"
+        />{" "}
+        <section className="space-y-8">
+          <div className="mb-9 space-y-1">
+            <h2 className="sub-header">Consent and Privacy</h2>
+          </div>
+        </section>{" "}
+        <CustomFormField
+          fieldType={formfieldtype.CHECKBOX}
+          control={form.control}
+          name="CHECKBOX0"
+          label="I agree to receive medical treatment for my condition. "
+        />
+        <CustomFormField
+          fieldType={formfieldtype.CHECKBOX}
+          control={form.control}
+          name="CHECKBOX1"
+          label="I approve the sharing of my health information for treatment-related purposes."
+        />
+        <CustomFormField
+          fieldType={formfieldtype.CHECKBOX}
+          control={form.control}
+          name="CHECKBOX2"
+          label="I confirm that I have read and accepted the terms of the privacy policy."
+        />
         <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
       </form>
     </Form>
