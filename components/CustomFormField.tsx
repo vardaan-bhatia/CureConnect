@@ -16,6 +16,7 @@ import { Control } from "react-hook-form";
 import Image from "next/image";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
+
 import { Select, SelectContent, SelectTrigger, SelectValue } from "./ui/select";
 
 export enum formfieldtype {
@@ -50,6 +51,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
     iconAlt,
     dateFormat,
     showTimeSelect,
+    renderSkeleton,
   } = props;
   switch (fieldType) {
     case formfieldtype.INPUT:
@@ -124,6 +126,17 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
               {props.children}
             </SelectContent>
           </Select>
+        </FormControl>
+      );
+    case formfieldtype.TEXTAREA:
+      return (
+        <FormControl>
+          <textarea
+            placeholder={props.placeholder}
+            {...field}
+            className="shad-textArea"
+            disabled={props.disabled}
+          />
         </FormControl>
       );
     case formfieldtype.SKELETON:
