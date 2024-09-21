@@ -151,7 +151,6 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
               id={props.name}
               checked={field.value}
               onCheckedChange={field.onChange}
-              className=" bg-blue-500"
             />
             <label htmlFor={props.name} className="checkbox-label">
               {props.label}

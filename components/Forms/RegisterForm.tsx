@@ -15,6 +15,7 @@ import { GenderOptions } from "../../constants/index";
 import { Doctors, IdentificationTypes } from "../../constants/index";
 import Image from "next/image";
 import { SelectItem } from "../ui/select";
+import FileUploader from "../FileUploader";
 
 const RegisterForm = () => {
   const router = useRouter();
@@ -54,7 +55,7 @@ const RegisterForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <section className="space-y-4">
           <p className="text-24-bold md:text-24-bold">Welcome 👋,</p>
           <p className="text-dark-700">Let us know more about yourself</p>
@@ -100,7 +101,7 @@ const RegisterForm = () => {
           <CustomFormField
             fieldType={formfieldtype.DATE_PICKER}
             control={form.control}
-            name="birthdate"
+            name="birthDate"
             label="Date of birth"
             iconSrc="/assets/icons/calendar.svg"
             placeholder="Select your birth date"
@@ -154,15 +155,15 @@ const RegisterForm = () => {
           <CustomFormField
             fieldType={formfieldtype.INPUT}
             control={form.control}
-            name="contact-name"
+            name="emergencyContactName"
             label="Emergency contact name"
             placeholder="Guardian's name"
           />{" "}
           <CustomFormField
             fieldType={formfieldtype.PHONE_INPUT}
             control={form.control}
-            name="emergency-phone"
-            label="Contact Number"
+            name="emergencyContactNumber"
+            label="Emergency Contact Number"
           />
         </div>
         <section className="space-y-8">
@@ -173,7 +174,7 @@ const RegisterForm = () => {
         <CustomFormField
           fieldType={formfieldtype.SELECT}
           control={form.control}
-          name="emergency-phone"
+          name="primaryPhysician"
           label="Your Trusted Doctor"
           placeholder="Select a doctor"
         >
@@ -202,14 +203,14 @@ const RegisterForm = () => {
           <CustomFormField
             fieldType={formfieldtype.INPUT}
             control={form.control}
-            name="insurance"
+            name="insuranceProvider"
             label="Insurance Provider"
             placeholder="ex-Aditya Birla Health Insurance Co"
           />{" "}
           <CustomFormField
             fieldType={formfieldtype.INPUT}
             control={form.control}
-            name="policy-number"
+            name="insurancePolicyNumber"
             label="Insurance policy number"
             placeholder="ex-123DX5R65"
           />
@@ -226,7 +227,7 @@ const RegisterForm = () => {
           <CustomFormField
             fieldType={formfieldtype.TEXTAREA}
             control={form.control}
-            name="currenty-medications"
+            name="currentMedication"
             label="Medications Currently Taken"
             placeholder="ex: Paracetamol 500mg, Lisinopril 10mg"
           />
@@ -236,14 +237,14 @@ const RegisterForm = () => {
           <CustomFormField
             fieldType={formfieldtype.TEXTAREA}
             control={form.control}
-            name="health-history"
+            name="familyMedicalHistory"
             label="Family Health History"
             placeholder="ex: Father had hypertension"
           />{" "}
           <CustomFormField
             fieldType={formfieldtype.TEXTAREA}
             control={form.control}
-            name="contact-name"
+            name="pastMedicalHistory"
             label="Previous Medical Conditions"
             placeholder="Diabetes diagnosed at age 30"
           />
@@ -256,7 +257,7 @@ const RegisterForm = () => {
         <CustomFormField
           fieldType={formfieldtype.SELECT}
           control={form.control}
-          name="identification"
+          name="identificationType"
           label="Identification type"
           placeholder="Select your ID type"
         >
@@ -274,9 +275,20 @@ const RegisterForm = () => {
         <CustomFormField
           fieldType={formfieldtype.INPUT}
           control={form.control}
-          name="id-number"
+          name="identificationNumber"
           label="Identification number"
           placeholder="ex-1345 2345 4234"
+        />{" "}
+        <CustomFormField
+          fieldType={formfieldtype.SKELETON}
+          control={form.control}
+          name="identificationDocument"
+          label="Scanned copy of your Identification document"
+          renderSkeleton={(field) => (
+            <FormControl>
+              <FileUploader files={field.value} onChange={field.onChange} />
+            </FormControl>
+          )}
         />{" "}
         <section className="space-y-8">
           <div className="mb-9 space-y-1">
@@ -286,19 +298,19 @@ const RegisterForm = () => {
         <CustomFormField
           fieldType={formfieldtype.CHECKBOX}
           control={form.control}
-          name="CHECKBOX0"
+          name="treatmentConsent"
           label="I agree to receive medical treatment for my condition. "
         />
         <CustomFormField
           fieldType={formfieldtype.CHECKBOX}
           control={form.control}
-          name="CHECKBOX1"
+          name="disclosureConsent"
           label="I approve the sharing of my health information for treatment-related purposes."
         />
         <CustomFormField
           fieldType={formfieldtype.CHECKBOX}
           control={form.control}
-          name="CHECKBOX2"
+          name="privacyConsent"
           label="I confirm that I have read and accepted the terms of the privacy policy."
         />
         <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>

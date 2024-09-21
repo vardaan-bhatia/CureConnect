@@ -15,21 +15,7 @@ const Register = async ({ params: { userId } }: SearchParamProps) => {
             className="mb-12 h-10 w-fit"
           />
           <RegisterForm />
-          <div className="text-14-regular mt-10 flex justify-between">
-            <p className="text-dark-600 xl:text-left">
-              © 2024 CureConnect by{" "}
-              <Link
-                href="https://www.linkedin.com/in/vardaan-bhatia-028446203/"
-                className="text-cyan-400"
-                target="_blank"
-              >
-                Vardaan Bhatia
-              </Link>
-            </p>
-            <Link href="/?admin=true" className="text-cyan-400">
-              Admin
-            </Link>
-          </div>
+          <p className="copyright py-8">© 2024 CureConnect</p>
         </div>
       </section>
 
