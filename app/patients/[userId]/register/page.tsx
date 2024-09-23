@@ -1,6 +1,5 @@
 import RegisterForm from "@/components/Forms/RegisterForm";
 import Image from "next/image";
-import Link from "next/link";
 
 const Register = async ({ params: { userId } }: SearchParamProps) => {
   return (

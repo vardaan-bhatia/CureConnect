@@ -8,11 +8,15 @@ import CustomFormField, { formfieldtype } from "../CustomFormField";
 import SubmitButton from "../SubmitButton";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { UserFormValidation } from "@/lib/FormValidation";
+import { PatientFormValidation } from "@/lib/FormValidation";
 import { createUser } from "@/lib/actions/patient.actions";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
-import { GenderOptions } from "../../constants/index";
-import { Doctors, IdentificationTypes } from "../../constants/index";
+import {
+  Doctors,
+  IdentificationTypes,
+  PatientFormDefaultValues,
+  GenderOptions,
+} from "../../constants/index";
 import Image from "next/image";
 import { SelectItem } from "../ui/select";
 import FileUploader from "../FileUploader";
@@ -22,8 +26,8 @@ const RegisterForm = () => {
 
   const [isLoading, setisLoading] = useState(false);
 
-  const form = useForm<z.infer<typeof UserFormValidation>>({
-    resolver: zodResolver(UserFormValidation),
+  const form = useForm<z.infer<typeof PatientFormValidation>>({
+    resolver: zodResolver(PatientFormValidation),
     defaultValues: {
       name: "",
       email: "",
@@ -35,17 +39,18 @@ const RegisterForm = () => {
     name,
     email,
     phone,
-  }: z.infer<typeof UserFormValidation>) {
+  }: z.infer<typeof PatientFormValidation>) {
     setisLoading(true);
     try {
       const userData = {
+        ...PatientFormDefaultValues,
         name,
         email,
         phone,
       };
       const newUser = await createUser(userData);
       if (newUser) {
-        router.push(`/patients/${newUser.$id}/register`);
+        router.push(`/patients/${newUser.$id}/register/appointment`);
       }
     } catch (error) {
       console.log(error);
@@ -300,6 +305,12 @@ const RegisterForm = () => {
           control={form.control}
           name="treatmentConsent"
           label="I agree to receive medical treatment for my condition. "
+        />
+        <CustomFormField
+          fieldType={formfieldtype.CHECKBOX}
+          control={form.control}
+          name="disclosureConsent"
+          label="I approve the sharing of my health information for treatment-related purposes."
         />
         <CustomFormField
           fieldType={formfieldtype.CHECKBOX}
