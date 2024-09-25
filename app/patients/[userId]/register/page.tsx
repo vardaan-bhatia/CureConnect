@@ -1,7 +1,11 @@
 import RegisterForm from "@/components/Forms/RegisterForm";
 import Image from "next/image";
+import { redirect } from "next/navigation";
+import { getUser } from "@/lib/actions/patient.actions";
 
 const Register = async ({ params: { userId } }: SearchParamProps) => {
+  const user = await getUser(userId);
+
   return (
     <div className="flex h-screen max-h-screen">
       <section className="remove-scrollbar container">
@@ -13,7 +17,7 @@ const Register = async ({ params: { userId } }: SearchParamProps) => {
             alt="patient"
             className="mb-12 h-10 w-fit"
           />
-          <RegisterForm />
+          <RegisterForm user={user} />
           <p className="copyright py-8">© 2024 CureConnect</p>
         </div>
       </section>
