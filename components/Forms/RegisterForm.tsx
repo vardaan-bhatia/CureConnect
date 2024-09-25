@@ -20,10 +20,10 @@ import {
 import Image from "next/image";
 import { SelectItem } from "../ui/select";
 import FileUploader from "../FileUploader";
+import { registerPatient } from "@/lib/actions/patient.actions";
 
-const RegisterForm = ({ User }: { user: User }) => {
+const RegisterForm = ({ user }: { user: User }) => {
   const router = useRouter();
-
   const [isLoading, setisLoading] = useState(false);
 
   const form = useForm<z.infer<typeof PatientFormValidation>>({
