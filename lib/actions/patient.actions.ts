@@ -42,6 +42,7 @@ export const getUser = async (userId: string) => {
 
 export const registerPatient = async ({
   identificationDocument,
+  userId,
   ...patient
 }: RegisterUserParams) => {
   const PROJECT_ID = process.env.NEXT_PUBLIC_PROJECT_ID;
@@ -72,11 +73,11 @@ export const registerPatient = async ({
       PATIENT_COLLECTION_ID!,
       ID.unique(),
       {
-        userId: patient.userId || null,
         identificationDocumentId: file?.$id || null,
         identificationDocumentUrl: file?.$id
           ? `${ENDPOINT}/storage/buckets/${BUCKET_ID}/files/${file.$id}/view?project=${PROJECT_ID}`
           : null,
+        userId,
         ...patient,
       }
     );

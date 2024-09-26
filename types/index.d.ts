@@ -37,6 +37,10 @@ declare interface RegisterUserParams extends CreateUserParams {
   identificationDocument?: FormData | undefined;
   privacyConsent: boolean;
 }
+// Appwrite User, extending basic user params with unique ID
+declare interface User extends CreateUserParams {
+  $id: string;
+}
 
 declare type CreateAppointmentParams = {
   userId: string;
