@@ -2,7 +2,6 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import Image from "next/image";
 import { z } from "zod";
 import { Form } from "@/components/ui/form";
 import CustomFormField, { formfieldtype } from "../CustomFormField";
@@ -13,8 +12,9 @@ import { UserFormValidation } from "@/lib/FormValidation";
 import { createUser } from "@/lib/actions/patient.actions";
 import { Doctors } from "../../constants/index";
 import { SelectItem } from "../ui/select";
+import Image from "next/image";
 
-const PatientForm = () => {
+const AppointmentForm = () => {
   const router = useRouter();
 
   const [isLoading, setisLoading] = useState(false);
@@ -118,4 +118,4 @@ const PatientForm = () => {
   );
 };
 
-export default PatientForm;
+export default AppointmentForm;

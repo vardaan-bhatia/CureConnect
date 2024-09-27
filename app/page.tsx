@@ -18,7 +18,7 @@ export default function Home() {
           <PatientForm />
           <div className="text-14-regular mt-10 flex justify-between">
             <p className="text-dark-600 xl:text-left">
-              © 2024 CureConnect by{" "}
+              © {new Date().getFullYear()} CureConnect by{" "}
               <Link
                 href="https://www.linkedin.com/in/vardaan-bhatia-028446203/"
                 className="text-cyan-400"

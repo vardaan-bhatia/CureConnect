@@ -79,3 +79,10 @@ export const StatusIcon = {
   pending: "/assets/icons/pending.svg",
   cancelled: "/assets/icons/cancelled.svg",
 };
+
+export const PROJECT_ID = process.env.NEXT_PUBLIC_PROJECT_ID;
+export const BUCKET_ID = process.env.NEXT_PUBLIC_BUCKET_ID;
+export const ENDPOINT = process.env.NEXT_PUBLIC_ENDPOINT;
+export const PATIENT_COLLECTION_ID =
+  process.env.NEXT_PUBLIC_PATIENT_COLLECTION_ID;
+export const DATABASE_ID = process.env.NEXT_PUBLIC_DATABASE_ID;

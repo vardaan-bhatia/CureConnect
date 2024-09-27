@@ -1,5 +1,12 @@
 "use server";
 
+import {
+  PROJECT_ID,
+  BUCKET_ID,
+  ENDPOINT,
+  PATIENT_COLLECTION_ID,
+  DATABASE_ID,
+} from "@/constants/index";
 import { ID, Query } from "node-appwrite";
 import { databases, storage, users } from "../appwrite.config";
 import { parseStringify } from "../utils";
@@ -45,11 +52,6 @@ export const registerPatient = async ({
   userId,
   ...patient
 }: RegisterUserParams) => {
-  const PROJECT_ID = process.env.NEXT_PUBLIC_PROJECT_ID;
-  const BUCKET_ID = process.env.NEXT_PUBLIC_BUCKET_ID;
-  const ENDPOINT = process.env.NEXT_PUBLIC_ENDPOINT;
-  const PATIENT_COLLECTION_ID = process.env.NEXT_PUBLIC_PATIENT_COLLECTION_ID;
-  const DATABASE_ID = process.env.NEXT_PUBLIC_DATABASE_ID;
   try {
     let file;
 
@@ -90,20 +92,21 @@ export const registerPatient = async ({
   }
 };
 
-// // GET PATIENT
-// export const getPatient = async (userId: string) => {
-//   try {
-//     const patients = await databases.listDocuments(
-//       DATABASE_ID!,
-//       PATIENT_COLLECTION_ID!,
-//       [Query.equal("userId", [userId])]
-//     );
+// GET PATIENT
+export const getPatient = async (userId: string) => {
+  try {
+    const patients = await databases.listDocuments(
+      DATABASE_ID!,
+      PATIENT_COLLECTION_ID!,
+      [Query.equal("userId", userId)]
+    );
 
-//     return parseStringify(patients.documents[0]);
-//   } catch (error) {
-//     console.error(
-//       "An error occurred while retrieving the patient details:",
-//       error
-//     );
-//   }
-// };
+    return parseStringify(patients.documents[0]);
+  } catch (error) {
+    console.error(
+      "An error occurred while retrieving the patient details:",
+      error
+    );
+    throw error;
+  }
+};
