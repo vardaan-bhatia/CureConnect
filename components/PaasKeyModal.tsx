@@ -19,6 +19,7 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { decryptKey, encryptKey } from "@/lib/utils";
+
 const PasskeyModal = () => {
   const router = useRouter();
   const path = usePathname();
@@ -118,4 +119,4 @@ const PasskeyModal = () => {
   );
 };
 
-export default PasskeyModal
+export default PasskeyModal;
