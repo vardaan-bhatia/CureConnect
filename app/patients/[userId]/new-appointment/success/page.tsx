@@ -2,21 +2,21 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Doctors } from "@/constants";
-import { getAppointmentSchema } from "@/lib/FormValidation";
 import { formatDateTime } from "@/lib/utils";
+import { getAppointment } from "@/lib/actions/appointment.action";
 
 const RequestSuccess = async ({
   searchParams,
   params: { userId },
 }: SearchParamProps) => {
   const appointmentId = (searchParams?.appointmentId as string) || "";
-  const appointment = await getAppointmentSchema(appointmentId);
+  const appointment = await getAppointment(appointmentId);
 
   const doctor = Doctors.find(
     (doctor) => doctor.name === appointment.primaryPhysician
   );
   return (
-    <div className=" flex h-screen max-h-screen px-[5%]">
+    <div className=" flex h-screen max-h-screen px-[5%] overflow-hidden">
       <div className="success-img">
         <Link href="/">
           <Image
@@ -39,7 +39,7 @@ const RequestSuccess = async ({
             Your <span className="text-green-500">appointment request</span> has
             been successfully submitted!
           </h2>
-          <p>We&apos;ll be in touch shortly to confirm.</p>
+          <p>We'll be in touch shortly to confirm.</p>
         </section>
 
         <section className="request-details">
