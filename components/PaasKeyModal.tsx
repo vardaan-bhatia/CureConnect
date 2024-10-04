@@ -49,21 +49,25 @@ const PasskeyModal = () => {
     router.push("/");
   };
 
-  const validatePasskey = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    e.preventDefault();
-
+  const validatePasskey = () => {
     if (passkey === process.env.NEXT_PUBLIC_ADMIN_PASSKEY) {
       const encryptedKey = encryptKey(passkey);
 
       localStorage.setItem("accessKey", encryptedKey);
 
       setOpen(false);
+      router.push("/admin");
     } else {
       setError("Invalid passkey. Please try again.");
     }
   };
+
+  useEffect(() => {
+    // Auto-validate when passkey reaches 6 digits
+    if (passkey.length === 4) {
+      validatePasskey();
+    }
+  }, [passkey]);
 
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
@@ -95,8 +99,6 @@ const PasskeyModal = () => {
               <InputOTPSlot className="shad-otp-slot" index={1} />
               <InputOTPSlot className="shad-otp-slot" index={2} />
               <InputOTPSlot className="shad-otp-slot" index={3} />
-              <InputOTPSlot className="shad-otp-slot" index={4} />
-              <InputOTPSlot className="shad-otp-slot" index={5} />
             </InputOTPGroup>
           </InputOTP>
 
@@ -107,10 +109,7 @@ const PasskeyModal = () => {
           )}
         </div>
         <AlertDialogFooter>
-          <AlertDialogAction
-            onClick={(e) => validatePasskey(e)}
-            className="shad-primary-btn w-full"
-          >
+          <AlertDialogAction className="shad-primary-btn w-full">
             Enter Admin Passkey
           </AlertDialogAction>
         </AlertDialogFooter>
